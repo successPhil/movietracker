@@ -8,3 +8,8 @@ html, body{
   margin-left:250px;
   text-align:center;
 }
+
+.logout {
+  margin-left: 250px;
+  color: red;
+}

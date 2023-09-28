@@ -22,6 +22,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import InfoIcon from '@mui/icons-material/Info';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
+
 
 const menuItems = [
   {
@@ -100,7 +102,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-export default function PersistentDrawerLeft() {
+export default function PersistentDrawerLeft({handleLogout}) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -128,9 +130,11 @@ export default function PersistentDrawerLeft() {
           >
             <MenuIcon />
           </IconButton>
+          
           <Typography variant="h6" noWrap component="div">
             Menu
           </Typography>
+          <Button onClick={handleLogout} variant="outlined" className="logout" sx={{ marginLeft: 85 }}>Logout</Button>
         </Toolbar>
       </AppBar>
       <Drawer
