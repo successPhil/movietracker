@@ -1,4 +1,4 @@
-import { getMovies } from "../api/authApi"
+import { getMovies, getNewMovies } from "../api/authApi"
 import { useState, useEffect, useContext } from 'react'
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
@@ -10,6 +10,7 @@ import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import ImgMediaCard from "../muiComponents/Card"
 
 export default function Movies() {
 
@@ -17,6 +18,17 @@ export default function Movies() {
     const [selectedMovie, setSelectedMovie] = useState("")
     const [movieSearch, setMovieSearch] = useState("")
     const [inputValue, setInputValue] = useState('')
+    const [newMovies, setNewMovies] = useState(null)
+    
+    useEffect(() => {
+        const newMoviesData = getNewMovies()
+        // setNewMovies(newMoviesData)
+
+
+    },[]);
+
+    console.log(newMovies)
+    
     
     const darkTheme = createTheme({
         palette: {
@@ -106,7 +118,9 @@ export default function Movies() {
                 </Select>
               </FormControl>
             </Box>
+            <ImgMediaCard />
             </ThemeProvider>
+            
             </div>
     )
 }
