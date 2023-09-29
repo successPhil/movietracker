@@ -1,6 +1,9 @@
+import { useState } from "react";
 export default function About() {
+    const [ menuOpened, setMenuOpened ] = useState(false)
     return (
-        <div className="about-content">
+        <div className="route-text">
+        <div className={`about-content ${menuOpened ? 'menu-opened' : ''}`}>
       <h1>Welcome to Machbuster</h1>
       <p>Your go-to source for upcoming movie releases and more!</p>
 
@@ -43,6 +46,7 @@ export default function About() {
       <footer>
         <p>&copy; 2023 Machbuster. All rights reserved.</p>
       </footer>
+    </div>
     </div>
   );
 };

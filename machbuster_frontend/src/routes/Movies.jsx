@@ -101,6 +101,7 @@ export default function Movies() {
         <Button id="search-btn" onClick={onClickHandler} variant="contained">Search</Button>
         </Box>
         <Container >
+          {movies ? (<h1></h1>) : (<h1>Upcoming</h1> )}
           <Grid container mt={3}>
             {movies ? (
               movies.map((movie, movieidx)=> (
