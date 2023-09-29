@@ -29,7 +29,7 @@ class newMovieAPIView(APIView):
             url = f"https://moviesdatabase.p.rapidapi.com/titles/x/upcoming"
             
             headers = {
-                "X-RapidAPI-Key": "213a184340msh5ae6dadd8394402p10911ajsn462a6d221ff6",
+                "X-RapidAPI-Key": os.environ['UPCOMING_API_KEY'],
                 "X-RapidAPI-Host": "moviesdatabase.p.rapidapi.com"
                 }
             response = requests.get(url, headers=headers)

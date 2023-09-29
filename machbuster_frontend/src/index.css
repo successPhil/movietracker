@@ -4,15 +4,30 @@ html, body{
   padding: 0;
 
 }
-.route-text {
-  margin-left:250px;
-  text-align:center;
-}
+
+
 
 #logout {
   margin-left: auto;
   color: red;
   height:38px;
+}
+.about-content {
+  margin-left:250px;
+  text-align:center;
+  max-width: 800px; /* Adjust the maximum width as needed */
+  margin: 0 auto; /* Center the content */
+  text-align: left; /* Align the text to the left */
+  padding: 0 20px; /* Add some padding to the sides */
+
+  ul {
+    list-style-type: disc; /* Use bullets for the list items */
+    padding-left: 20px; /* Adjust the indentation of the list items */
+  }
+
+  li {
+    margin-bottom: 10px; /* Add some space between each list item */
+  }
 }
 
 .movie-container {

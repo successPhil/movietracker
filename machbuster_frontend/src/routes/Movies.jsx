@@ -100,11 +100,11 @@ export default function Movies() {
         />
         <Button id="search-btn" onClick={onClickHandler} variant="contained">Search</Button>
         </Box>
-        <Container>
-          <Grid container spacing={2} mt={3}>
+        <Container >
+          <Grid container mt={3}>
             {movies ? (
               movies.map((movie, movieidx)=> (
-                <ImgMediaCard movie={movie} key={`movie${movieidx}`}/>
+                <ImgMediaCard movie={movie} key={`movie${movieidx}`} />
               ))
             ) :
             newMovies.map((movie, movieidx)=>(
