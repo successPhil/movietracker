@@ -5,6 +5,7 @@ import Login from "./routes/Login";
 import About from "./routes/About"
 import Contact from "./routes/Contact"
 import Movies from "./routes/Movies";
+import MovieDetails from "./routes/MovieDetails";
 
 
 
@@ -62,6 +63,7 @@ function App() {
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/movies" element={<Movies />} />
+      <Route path="/movies/:id/details" element={<MovieDetails />} />
      </Routes>
      </Router>
      

@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
+import { Link } from 'react-router-dom';
 
 export default function ImgMediaCard({movie}) {
     return (
@@ -30,7 +31,9 @@ export default function ImgMediaCard({movie}) {
           </Typography>
         </CardContent>
         <CardActions>
+        <Link to={`/movies/${movie.id}/details`}>
           <Button size="small">Learn More</Button>
+          </Link>
         </CardActions>
       </Paper>
       </Grid>

@@ -21,11 +21,13 @@ export default function Movies() {
       const asyncNewMovieData = async () => {
         const newMoviesData = await getNewMovies()
         const unfiltered = newMoviesData.results
+        console.log(unfiltered)
         const filtered = unfiltered.filter(movie => (movie.primaryImage !== null))
         const formatted = filtered.map((movie) => ({
           title: movie.originalTitleText.text,
           movieImg: movie.primaryImage.url,
-          text: `Expected release: ${movie.releaseDate.year}/${movie.releaseDate.month}/${movie.releaseDate.day}`
+          text: `Expected release: ${movie.releaseDate.year}/${movie.releaseDate.month}/${movie.releaseDate.day}`,
+          id: movie.id,
 
         }))
         setNewMovies(formatted)
