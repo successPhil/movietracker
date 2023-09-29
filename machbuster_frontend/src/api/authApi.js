@@ -63,6 +63,6 @@ async function basicFetch(url, payload) {
         "Content-Type": "application/json",
         "Authorization": `Token ${localStorage.getItem("token")}`
       }  }
-    const body = await basicFetch(`http://localhost:8000/movies/?id=${searchParam}`, payload)
+    const body = await basicFetch(`http://localhost:8000/movies/detail?id=${searchParam}`, payload)
     return body
   }
