@@ -4,30 +4,38 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl'
-import Select from '@mui/material/Select';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import ImgMediaCard from "../muiComponents/Card"
+import ImgMediaCard from "../components/Card"
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
 
 export default function Movies() {
 
     const [movies, setMovies] = useState(null)
-    const [selectedMovie, setSelectedMovie] = useState("")
     const [movieSearch, setMovieSearch] = useState("")
     const [inputValue, setInputValue] = useState('')
-    const [newMovies, setNewMovies] = useState(null)
+    const [newMovies, setNewMovies] = useState([])
     
     useEffect(() => {
-        const newMoviesData = getNewMovies()
-        // setNewMovies(newMoviesData)
+      const asyncNewMovieData = async () => {
+        const newMoviesData = await getNewMovies()
+        const unfiltered = newMoviesData.results
+        const filtered = unfiltered.filter(movie => (movie.primaryImage !== null))
+        const formatted = filtered.map((movie) => ({
+          title: movie.originalTitleText.text,
+          movieImg: movie.primaryImage.url,
+          text: `Expected release: ${movie.releaseDate.year}/${movie.releaseDate.month}/${movie.releaseDate.day}`
 
+        }))
+        setNewMovies(formatted)
 
+      }
+      asyncNewMovieData()
     },[]);
 
     console.log(newMovies)
+    console.log(movies)
     
     
     const darkTheme = createTheme({
@@ -36,15 +44,23 @@ export default function Movies() {
         },
       });
     
-    const onClickHandler = () => {
-        getMovies(movieSearch)
+    const onClickHandler = async () => {
+      setInputValue('')
+      const searchMovies = await getMovies(movieSearch)
+      const rawSearch = searchMovies.Search
+      const filteredSearch = rawSearch.filter(movie => (movie.Poster !== 'N/A'))
+      const formattedSearch = filteredSearch.map((movie)=>({
+        title: movie.Title,
+        movieImg: movie.Poster,
+        text: movie.Year,
+      }))
+      setMovies(formattedSearch)
     }
 
     const onChangeHandler = (e) => {
         setInputValue(e.target.value)
         setMovieSearch(e.target.value)
       }
-      console.log(movieSearch, "this")
     
     const formatString = (str) => {
       const replacedString = str.replace(/ /g, '&');
@@ -52,75 +68,51 @@ export default function Movies() {
       return str
     }
     
-    const handleKeyDown = (e) => {
+    const handleKeyDown = async (e) => {
       if (e.key === 'Enter') {
         e.preventDefault();
         let searchValue = e.target.value
         setMovieSearch(formatString(searchValue))
+        setInputValue('')
+        const searchMovies = await getMovies(movieSearch)
+        const rawSearch = searchMovies.Search
+      const filteredSearch = rawSearch.filter(movie => (movie.Poster !== 'N/A'))
+      const formattedSearch = filteredSearch.map((movie)=>({
+        title: movie.Title,
+        movieImg: movie.Poster,
+        text: movie.Year,
+      }))
+        setMovies(formattedSearch)
       }
     }
-    
-  
-    
-    
     
     return (
         <div>
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <Box
-                    component="form"
-                    sx={{
-                        display: "flex",
-                        justifyContent: "center", // Center horizontally
-                        alignItems: "center", // Center vertically
-                        flexDirection: "row", // Display items in a row
-                        gap: "10px", // Add some spacing between items
-                        margin: "20px", // Add margin to the container
-                        
-                    }}
-                    noValidate
-                    autoComplete="off"
-                >
-                        <TextField
-                  onChange={onChangeHandler}
-                  onKeyDown={handleKeyDown}
-                  value={inputValue}
-                  id="standard-size-small"
-                  size="small"
-                  variant="standard"
-                />
-                <Button sx={{ marginLeft: 5}}onClick={onClickHandler} variant="contained">Search</Button>
-                </Box>
-                
-
-         
-                  <Box                                         sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center", // Center horizontally
-                        gap: "20px", // Add spacing between elements
-                        width: "50%", // Set the width of the container
-                        margin: "0 auto", // Center the container horizontally
-                    }}>
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Movies</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value=""
-                  label="Age"
-                  // onChange={handleChange}
-                >
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-              </FormControl>
-            </Box>
-            <ImgMediaCard />
+      <Box className="movie-container">
+       <TextField
+        onChange={onChangeHandler}
+        onKeyDown={handleKeyDown}
+        value={inputValue}
+        id="search-input"
+        variant="filled"
+        />
+        <Button id="search-btn" onClick={onClickHandler} variant="contained">Search</Button>
+        </Box>
+        <Container>
+          <Grid container spacing={2} mt={3}>
+            {movies ? (
+              movies.map((movie, movieidx)=> (
+                <ImgMediaCard movie={movie} key={`movie${movieidx}`}/>
+              ))
+            ) :
+            newMovies.map((movie, movieidx)=>(
+              <ImgMediaCard movie={movie} key={`movie${movieidx}`}/>
+            ))}
+          </Grid>
+        </Container>
             </ThemeProvider>
-            
             </div>
     )
 }

@@ -9,7 +9,22 @@ html, body{
   text-align:center;
 }
 
-.logout {
-  margin-left: 250px;
+#logout {
+  margin-left: auto;
   color: red;
+  height:38px;
+}
+
+.movie-container {
+  text-align: center;
+  margin-left: 75px;
+}
+#search-input {
+  height:10px;
+  width: 500px;
+}
+#search-btn {
+  margin-left: 35px;
+  height:44px;
+  width:140px;
 }

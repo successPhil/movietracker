@@ -5,13 +5,8 @@ import Login from "./routes/Login";
 import About from "./routes/About"
 import Contact from "./routes/Contact"
 import Movies from "./routes/Movies";
-// import { create } from "zustand"
 
-// const useTokenStore = create((set) => ({
-//   token: null,
-//   setToken: (newToken) => set({ token: newToken }),
-//   clearToken: () => set({ token: null }),
-// }));
+
 
 function App() {
 

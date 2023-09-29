@@ -134,7 +134,7 @@ export default function PersistentDrawerLeft({handleLogout}) {
           <Typography variant="h6" noWrap component="div">
             Menu
           </Typography>
-          <Button onClick={handleLogout} variant="outlined" className="logout" sx={{ marginLeft: 85 }}>Logout</Button>
+          <Button onClick={handleLogout} variant="outlined" id="logout">Logout</Button>
         </Toolbar>
       </AppBar>
       <Drawer

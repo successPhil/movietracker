@@ -42,7 +42,6 @@ async function basicFetch(url, payload) {
         "Authorization": `Token ${localStorage.getItem("token")}`
       }  }
     const body = await basicFetch(`http://localhost:8000/movies/?name=${searchParam}`, payload)
-    console.log(body)
     return body
   }
 
@@ -54,6 +53,5 @@ async function basicFetch(url, payload) {
         "Authorization": `Token ${localStorage.getItem("token")}`
       }  }
     const body = await basicFetch("http://localhost:8000/movies/new", payload)
-    console.log(body)
     return body
   }
