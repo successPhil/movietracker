@@ -55,3 +55,14 @@ async function basicFetch(url, payload) {
     const body = await basicFetch("http://localhost:8000/movies/new", payload)
     return body
   }
+
+  export async function getMovieDetail(searchParam) {
+    const payload = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Token ${localStorage.getItem("token")}`
+      }  }
+    const body = await basicFetch(`http://localhost:8000/movies/?id=${searchParam}`, payload)
+    return body
+  }
