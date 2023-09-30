@@ -2,6 +2,8 @@ version: '3'
 services:
   nginx:
     image: thisiskennyb/moviefrontend:1
+  ports:
+      - "80:80"
   api:
     image: thisiskennyb/movieapi2:1
     ports:
