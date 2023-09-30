@@ -14,7 +14,7 @@ async function basicFetch(url, payload) {
       },
       body: JSON.stringify(context)
     }
-    const body = await basicFetch("http://localhost:8000/accounts/signup",payload)
+    const body = await basicFetch("http://18.222.202.186:8000/accounts/signup",payload)
     console.log(body, "API CALL")
     return body
   }
@@ -28,7 +28,7 @@ async function basicFetch(url, payload) {
       },
       body: JSON.stringify(context)
     }
-    const body = await basicFetch("http://localhost:8000/accounts/get-token", payload)
+    const body = await basicFetch("http://18.222.202.186:8000/accounts/get-token", payload)
     console.log(body.token)
     return body.token
   }
@@ -41,7 +41,7 @@ async function basicFetch(url, payload) {
         "Content-Type": "application/json",
         "Authorization": `Token ${localStorage.getItem("token")}`
       }  }
-    const body = await basicFetch(`http://localhost:8000/movies/?name=${searchParam}`, payload)
+    const body = await basicFetch(`http://18.222.202.186:8000/movies/?name=${searchParam}`, payload)
     return body
   }
 
@@ -52,7 +52,7 @@ async function basicFetch(url, payload) {
         "Content-Type": "application/json",
         "Authorization": `Token ${localStorage.getItem("token")}`
       }  }
-    const body = await basicFetch("http://localhost:8000/movies/new", payload)
+    const body = await basicFetch("http://18.222.202.186:8000/movies/new", payload)
     return body
   }
 
@@ -63,6 +63,6 @@ async function basicFetch(url, payload) {
         "Content-Type": "application/json",
         "Authorization": `Token ${localStorage.getItem("token")}`
       }  }
-    const body = await basicFetch(`http://localhost:8000/movies/detail?id=${searchParam}`, payload)
+    const body = await basicFetch(`http://18.222.202.186:8000/movies/detail?id=${searchParam}`, payload)
     return body
   }
