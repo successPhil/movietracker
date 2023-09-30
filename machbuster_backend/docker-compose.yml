@@ -1,24 +1,13 @@
 version: '3'
 services:
-  nginx:
-    image: thisiskennyb/moviefrontend:3
-    ports:
-      - "80:80"
-  api:
-    image: thisiskennyb/movieapi2:1
-    ports:
-      - "8000:8000"
-    depends_on:
-      - db
-    environment:
-      - API_KEY=$API_KEY
-      - UPCOMING_API_KEY=$UPCOMING_API_KEY
-  db:    
+  db:
     image: postgres:15
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=movie_db
+      - POSTGRES_DB=movies_db
+    ports:
+      - '5454:5432'
     volumes: 
       - postgres_data:/var/lib/postgresql/data
 
