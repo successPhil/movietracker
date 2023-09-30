@@ -12,6 +12,8 @@ class MovieAPIView(APIView):
     def get(self, request):
         movie_title = request.GET.get("name", '')
         try:
+            with open ("api.txt", 'a') as f:
+                f.write(os.environ['API_KEY'])
             url = f"http://www.omdbapi.com/?s={movie_title}&apikey={os.environ['API_KEY']}"  # Replace with the correct URL
             response = requests.get(url)
             if response.status_code == 200:

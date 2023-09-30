@@ -9,6 +9,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import ImgMediaCard from "../components/Card"
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
+import { tableRowClasses } from "@mui/material";
 
 export default function Movies() {
 
@@ -21,7 +22,7 @@ export default function Movies() {
       const asyncNewMovieData = async () => {
         const newMoviesData = await getNewMovies()
         const unfiltered = newMoviesData.results
-        console.log(unfiltered)
+        // console.log(unfiltered)
         const filtered = unfiltered.filter(movie => (movie.primaryImage !== null))
         const formatted = filtered.map((movie) => ({
           title: movie.originalTitleText.text,
@@ -36,7 +37,7 @@ export default function Movies() {
       asyncNewMovieData()
     },[]);
 
-    console.log(newMovies)
+    // console.log(newMovies)
     console.log(movies)
     
     
@@ -50,11 +51,14 @@ export default function Movies() {
       setInputValue('')
       const searchMovies = await getMovies(movieSearch)
       const rawSearch = searchMovies.Search
+      console.log(rawSearch)
       const filteredSearch = rawSearch.filter(movie => (movie.Poster !== 'N/A'))
       const formattedSearch = filteredSearch.map((movie)=>({
         title: movie.Title,
         movieImg: movie.Poster,
         text: movie.Year,
+        id: movie.imdbID,
+
       }))
       setMovies(formattedSearch)
     }
@@ -83,6 +87,7 @@ export default function Movies() {
         title: movie.Title,
         movieImg: movie.Poster,
         text: movie.Year,
+        id: movie.imdbID,
       }))
         setMovies(formattedSearch)
       }
