@@ -66,3 +66,52 @@ async function basicFetch(url, payload) {
     const body = await basicFetch(`http://localhost:8000/movies/detail?id=${searchParam}`, payload)
     return body
   }
+
+  export async function addToWatchlist(movieId, movieName){
+    console.log(movieName)
+    try {
+      const response = await fetch('http://localhost:8000/watchlist/add/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          "Authorization": `Token ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({
+          movie_id: movieId,
+          movie_title: movieName,
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      // Handle success (optional)
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle error (optional)
+    }
+  }
+
+  export async function removeFromWatchlist (movieId) {
+    try {
+      const response = await fetch(`http://localhost:8000/watchlist/remove/${movieId}/`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          "Authorization": `Token ${localStorage.getItem("token")}`
+        },
+      });
+  
+      if (response.ok) {
+        console.log('good delete')
+      } else {
+        console.error('Error removing movie from watchlist');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+  
+  
+  

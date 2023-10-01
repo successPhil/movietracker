@@ -1,4 +1,4 @@
-import { getMovies, getNewMovies } from "../api/authApi"
+import { getMovies, getNewMovies, removeFromWatchlist } from "../api/authApi"
 import { useState, useEffect, useContext } from 'react'
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
@@ -9,7 +9,9 @@ import CssBaseline from '@mui/material/CssBaseline';
 import ImgMediaCard from "../components/Card"
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import { tableRowClasses } from "@mui/material";
+import { addToWatchlist } from "../api/authApi";
+import CustomizedSnackbars from "../muiComponents/Snack";
+import Watchlist from "../components/Watchlist";
 
 export default function Movies() {
 
@@ -17,28 +19,25 @@ export default function Movies() {
     const [movieSearch, setMovieSearch] = useState("")
     const [inputValue, setInputValue] = useState('')
     const [newMovies, setNewMovies] = useState([])
+    const [watchlist, setWatchlist ] = useState([])
     
     useEffect(() => {
       const asyncNewMovieData = async () => {
         const newMoviesData = await getNewMovies()
         const unfiltered = newMoviesData.results
-        // console.log(unfiltered)
         const filtered = unfiltered.filter(movie => (movie.primaryImage !== null))
         const formatted = filtered.map((movie) => ({
           title: movie.originalTitleText.text,
           movieImg: movie.primaryImage.url,
           text: `Expected release: ${movie.releaseDate.year}/${movie.releaseDate.month}/${movie.releaseDate.day}`,
           id: movie.id,
-
         }))
         setNewMovies(formatted)
-
       }
       asyncNewMovieData()
     },[]);
 
-    // console.log(newMovies)
-    console.log(movies)
+    console.log(watchlist)
     
     
     const darkTheme = createTheme({
@@ -90,9 +89,31 @@ export default function Movies() {
         id: movie.imdbID,
       }))
         setMovies(formattedSearch)
+      }}
+
+    const toggleWatchlist = (moviepick) => {
+      const alreadyAdded = watchlist.some((movie) => (movie.id === moviepick.id))
+      if (!alreadyAdded){
+        setWatchlist((prev)=> [
+          ...prev, {id: moviepick.id, title: moviepick.title, img: moviepick.movieImg}
+        ])
       }
+      
     }
-    
+    console.log(watchlist)
+
+    const handleAddToWatchlist = async (movieId, movieName) => {
+      await addToWatchlist(movieId, movieName);
+      console.log(`${movieName} added to list`)
+    };
+
+    const handleRemoveFromWatchlist = async (movieId) => {
+      await removeFromWatchlist(movieId)
+      const updatedWatchlist = watchlist.filter((movie) => (movie.id !== movieId))
+      setWatchlist(updatedWatchlist)
+      console.log('hope this works')
+    }
+
     return (
         <div>
     <ThemeProvider theme={darkTheme}>
@@ -109,16 +130,18 @@ export default function Movies() {
         </Box>
         <Container >
           {movies ? (<h1></h1>) : (<h1>Upcoming</h1> )}
+          {watchlist ? (<Watchlist watchlist={watchlist} handleRemoveFromWatchlist={handleRemoveFromWatchlist} />):(<div></div>)}
           <Grid container mt={3}>
             {movies ? (
               movies.map((movie, movieidx)=> (
-                <ImgMediaCard movie={movie} key={`movie${movieidx}`} />
+                <ImgMediaCard movie={movie} key={`movie${movieidx}`} toggleWatchlist={toggleWatchlist} handleAddToWatchlist={handleAddToWatchlist} />
               ))
             ) :
             newMovies.map((movie, movieidx)=>(
-              <ImgMediaCard movie={movie} key={`movie${movieidx}`}/>
+              <ImgMediaCard movie={movie} toggleWatchlist={toggleWatchlist} handleAddToWatchlist={handleAddToWatchlist} key={`movie${movieidx}`}/>
             ))}
           </Grid>
+          <CustomizedSnackbars/>
         </Container>
             </ThemeProvider>
             </div>

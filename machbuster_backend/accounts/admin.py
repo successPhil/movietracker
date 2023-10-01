@@ -1,6 +1,13 @@
 from django.contrib import admin
-from .models import machbuster_db
+from accounts.models import UserProfile
 
-# Register your models here.
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ['user', 'get_favorite_movies']
 
-admin.site.register([machbuster_db])
+    def get_favorite_movies(self, obj):
+        return ", ".join([movie.title for movie in obj.favorite_movies.all()])
+
+    get_favorite_movies.short_description = 'Favorite Movies'
+
+
+admin.site.register([UserProfile])

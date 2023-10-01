@@ -7,8 +7,13 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { Link } from 'react-router-dom';
+import CustomizedSnackbars from '../muiComponents/Snack';
 
-export default function ImgMediaCard({movie}) {
+
+export default function ImgMediaCard({movie, handleAddToWatchlist, toggleWatchlist}) {
+  
+
+
     return (
       <Grid item xs={4} mb={8} mt={2}>
       <Paper elevation={12} sx={{ maxWidth: 345 , maxHeight: 725, borderBottomLeftRadius: 10, borderBottomRightRadius: 10, borderTopLeftRadius:15, borderTopRightRadius:15}}>
@@ -18,9 +23,6 @@ export default function ImgMediaCard({movie}) {
           height="540"
           image={movie.movieImg}
           sx={{borderTopLeftRadius:15, borderTopRightRadius:15}}
-           
-          
-          
         />
         <CardContent sx={{maxHeight:185, height:100}}>
           <Typography gutterBottom variant="h6" component="div">
@@ -32,8 +34,10 @@ export default function ImgMediaCard({movie}) {
         </CardContent>
         <CardActions>
         <Link to={`/movies/${movie.id}/details`}>
-          <Button size="small">Learn More</Button>
+          <Button key={`btn${movie.id}`} size="small">Learn More</Button>
           </Link>
+          <CustomizedSnackbars
+          toggleWatchlist={toggleWatchlist} handleAddToWatchlist={handleAddToWatchlist} movie={movie}/>
         </CardActions>
       </Paper>
       </Grid>
