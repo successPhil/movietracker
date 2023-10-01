@@ -67,10 +67,10 @@ async function basicFetch(url, payload) {
     return body
   }
 
-  export async function addToWatchlist(movieId, movieName){
+  export async function addToWatchlist(movieId, movieName, movieImg){
     console.log(movieName)
     try {
-      const response = await fetch('http://localhost:8000/watchlist/add/', {
+      const response = await fetch('http://localhost:8000/watchlist/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -79,6 +79,7 @@ async function basicFetch(url, payload) {
         body: JSON.stringify({
           movie_id: movieId,
           movie_title: movieName,
+          movie_img: movieImg
         }),
       });
   
@@ -114,4 +115,13 @@ async function basicFetch(url, payload) {
   };
   
   
-  
+  export async function getWatchlist() {
+    const payload = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Token ${localStorage.getItem("token")}`
+      }  }
+    const body = await basicFetch(`http://localhost:8000/watchlist/`, payload)
+    return body
+  }

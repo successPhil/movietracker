@@ -8,6 +8,7 @@ import Movies from "./routes/Movies";
 import MovieDetails from "./routes/MovieDetails";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import Watchlist from "./components/Watchlist";
 
 
 
@@ -26,6 +27,10 @@ function App() {
 
   }, [])
 
+  const handleCheckboxChange = (toggleCheck) => {
+    setChecked(!toggleCheck)
+  }
+  
   const handleToken = (token) => {
     setFormData({ username: '', password: '' })
     localStorage.setItem("token", token)
@@ -40,9 +45,11 @@ function App() {
     });
   };
 
-  const handleOnClick = () => {
-    setChecked(prev => !prev);
+  const handleOnClick = (newChecked) => {
+    setChecked(newChecked);
+    
   }
+  console.log(checked, "from App")
 
   const handleLogout = () => {
     var keyToRemove = 'token';
@@ -69,11 +76,12 @@ function App() {
     <Router>
     <PersistentDrawerLeft handleLogout={handleLogout } theme={darkTheme} />
      <Routes>
-      <Route path="/" element={<Login checked={checked} handleOnClick={handleOnClick} handleInputChange={handleInputChange} formData={formData} handleToken={handleToken} />} />
+      <Route path="/" element={<Login checked={checked} handleOnClick={handleOnClick} handleInputChange={handleInputChange} formData={formData} handleToken={handleToken} token={userToken} handleCheckboxChange={handleCheckboxChange} />} />
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/movies" element={<Movies />} />
       <Route path="/movies/:id/details" element={<MovieDetails />} />
+      <Route path="/watchlist" element={<Watchlist />} />
      </Routes>
      </Router>
      </ThemeProvider>

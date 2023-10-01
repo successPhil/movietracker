@@ -14,7 +14,7 @@ export default function CustomizedSnackbars({toggleWatchlist, handleAddToWatchli
   const handleClick = async () => {
     setOpen(true);
     toggleWatchlist(movie)
-    await handleAddToWatchlist(movie.id, movie.title)
+    await handleAddToWatchlist(movie.id, movie.title, movie.movieImg)
   };
 
   const handleClose = (event, reason) => {

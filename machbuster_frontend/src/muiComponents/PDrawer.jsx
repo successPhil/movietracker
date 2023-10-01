@@ -22,6 +22,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
 
 
 const menuItems = [
@@ -44,6 +45,11 @@ const menuItems = [
     label: 'Login',
     icon: <AccountCircleIcon />,
     path: '/'
+  },
+  {
+    label: 'Watchlist',
+    icon: <SubscriptionsIcon />,
+    path: '/watchlist'
   }
 ];
 

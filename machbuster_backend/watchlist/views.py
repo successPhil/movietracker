@@ -3,17 +3,35 @@ from rest_framework.response import Response
 from rest_framework import status
 from accounts.models import UserProfile
 from movies.models import Movie
+from .serializers import MovieSerializer
 
-class AddToWatchlist(APIView):
+class Watchlist(APIView):
+    def get(self, request):
+        user = request.user  # Get the currently logged-in user
+        
+        try:
+            profile = UserProfile.objects.get(user=user)
+            watchlist_movies = profile.favorite_movies.all()  # Retrieve the user's watchlist movies
+
+            # Serialize the watchlist movies data
+            serializer = MovieSerializer(watchlist_movies, many=True)
+
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        except UserProfile.DoesNotExist:
+            return Response({'message': 'User profile not found.'}, status=status.HTTP_404_NOT_FOUND)
+    
+    
     def post(self, request):
         movie_id = request.data.get('movie_id')
         movie_title = request.data.get('movie_title')
+        movie_img = request.data.get('movie_img')
         user = request.user
         
 
         try:
             profile = UserProfile.objects.get(user=user)
-            movie, created = Movie.objects.get_or_create(movie_id=movie_id, defaults={'title': movie_title})
+            movie, created = Movie.objects.get_or_create(movie_id=movie_id, defaults={'title': movie_title, 'movie_img': movie_img})
 
             # Check if the movie is already in the user's favorites
             if movie not in profile.favorite_movies.all():

@@ -95,17 +95,12 @@ export default function Movies() {
     }
     console.log(watchlist)
 
-    const handleAddToWatchlist = async (movieId, movieName) => {
-      await addToWatchlist(movieId, movieName);
+    const handleAddToWatchlist = async (movieId, movieName, movieImg) => {
+      await addToWatchlist(movieId, movieName, movieImg);
       console.log(`${movieName} added to list`)
     };
 
-    const handleRemoveFromWatchlist = async (movieId) => {
-      await removeFromWatchlist(movieId)
-      const updatedWatchlist = watchlist.filter((movie) => (movie.id !== movieId))
-      setWatchlist(updatedWatchlist)
-      console.log('hope this works')
-    }
+
 
     return (
         <div>
@@ -121,7 +116,6 @@ export default function Movies() {
         </Box>
         <Container >
           {movies ? (<h1></h1>) : (<h1>Upcoming</h1> )}
-          {watchlist ? (<Watchlist watchlist={watchlist} handleRemoveFromWatchlist={handleRemoveFromWatchlist} />):(<div></div>)}
           <Grid container mt={3}>
             {movies ? (
               movies.map((movie, movieidx)=> (
