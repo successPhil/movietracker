@@ -39,13 +39,6 @@ export default function Movies() {
 
     console.log(watchlist)
     
-    
-    const darkTheme = createTheme({
-        palette: {
-          mode: 'dark',
-        },
-      });
-    
     const onClickHandler = async () => {
       setInputValue('')
       const searchMovies = await getMovies(movieSearch)
@@ -116,8 +109,6 @@ export default function Movies() {
 
     return (
         <div>
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
       <Box className="movie-container">
        <TextField
         onChange={onChangeHandler}
@@ -143,7 +134,6 @@ export default function Movies() {
           </Grid>
           <CustomizedSnackbars/>
         </Container>
-            </ThemeProvider>
             </div>
     )
 }

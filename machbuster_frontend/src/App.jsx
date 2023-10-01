@@ -6,6 +6,8 @@ import About from "./routes/About"
 import Contact from "./routes/Contact"
 import Movies from "./routes/Movies";
 import MovieDetails from "./routes/MovieDetails";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 
 
@@ -48,6 +50,12 @@ function App() {
   setUserToken(null)
   }
 
+  const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
+
   console.log(formData)
   console.log(userToken, "this is user token")
   
@@ -56,8 +64,10 @@ function App() {
 
   return (
     <>
+    <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
     <Router>
-    <PersistentDrawerLeft handleLogout={handleLogout} />
+    <PersistentDrawerLeft handleLogout={handleLogout } theme={darkTheme} />
      <Routes>
       <Route path="/" element={<Login checked={checked} handleOnClick={handleOnClick} handleInputChange={handleInputChange} formData={formData} handleToken={handleToken} />} />
       <Route path="/about" element={<About />} />
@@ -66,6 +76,7 @@ function App() {
       <Route path="/movies/:id/details" element={<MovieDetails />} />
      </Routes>
      </Router>
+     </ThemeProvider>
      
      
     </>

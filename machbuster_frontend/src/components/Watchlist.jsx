@@ -2,7 +2,6 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { removeFromWatchlist } from '../api/authApi';
 
 export default function Watchlist({ watchlist, handleRemoveFromWatchlist }) {
 

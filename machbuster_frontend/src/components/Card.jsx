@@ -1,4 +1,3 @@
-import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -11,9 +10,6 @@ import CustomizedSnackbars from '../muiComponents/Snack';
 
 
 export default function ImgMediaCard({movie, handleAddToWatchlist, toggleWatchlist}) {
-  
-
-
     return (
       <Grid item xs={4} mb={8} mt={2}>
       <Paper elevation={12} sx={{ maxWidth: 345 , maxHeight: 725, borderBottomLeftRadius: 10, borderBottomRightRadius: 10, borderTopLeftRadius:15, borderTopRightRadius:15}}>

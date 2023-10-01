@@ -12,7 +12,6 @@ export default function Login({handleInputChange, formData, handleToken, handleO
                 password: data.get('password'),
               }
               signup(context)
-
         } else {
             const data = new FormData(event.currentTarget);
             const context = {
@@ -21,35 +20,8 @@ export default function Login({handleInputChange, formData, handleToken, handleO
               }
               const tokenData = await login(context)
             handleToken(tokenData)
-
         }
-
-
       };
-
-    
-    
-    
-    
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault()
-    //     const context = {username: formData.username, password: formData.password}
-    //     const token = await login(context)
-    //     if(!token) {
-    //       setResponseMsg("Error logging in")
-    //     } else {
-    //       handleToken(token)
-    //       setShouldRedirect(true)
-    //     }
-    //   }
-    //   if (shouldRedirect) {
-    //     console.log("shouldRedirect")
-    //     return <Navigate to="/wines"/>
-    //   } else {
-    //     return <SignIn formType={"Login"} handleInputChange={handleInputChange} formData={formData}handleToken={handleToken} handleSubmit={handleSubmit} responseMsg={responseMsg}/>
-    //   }
-    
-    // }
     return (
         <div className="route-text">
         <SignIn handleSubmit={handleSubmit} handleInputChange={handleInputChange} formData={formData} handleToken={handleToken} handleOnClick={handleOnClick}/>

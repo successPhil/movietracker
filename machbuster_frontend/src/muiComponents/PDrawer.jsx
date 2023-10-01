@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
+import { styled} from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,7 +16,6 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import InfoIcon from '@mui/icons-material/Info';
@@ -48,12 +47,6 @@ const menuItems = [
   }
 ];
 
-
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-});
 
 const drawerWidth = 240;
 
@@ -97,13 +90,11 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
   justifyContent: 'flex-end',
 }));
 
-export default function PersistentDrawerLeft({handleLogout}) {
-  const theme = useTheme();
+export default function PersistentDrawerLeft({handleLogout, theme}) {
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -115,8 +106,6 @@ export default function PersistentDrawerLeft({handleLogout}) {
   };
 
   return (
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
@@ -175,6 +164,5 @@ export default function PersistentDrawerLeft({handleLogout}) {
         </Typography>
       </Main>
     </Box>
-    </ThemeProvider>
   );
 }
