@@ -6,6 +6,9 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box"
+import DetailMovieCard from "../muiComponents/DetailMovieCard";
 
 const MovieDetails = () => {
     let { id } = useParams(); // Access the movie ID from route parameters
@@ -15,36 +18,34 @@ const MovieDetails = () => {
     useEffect(() => {
         const fetchMovieDetail = async () => {
             const movieData =  await getMovieDetail(id)
-        setMovieDetail(movieData)
+            console.log(movieData)
+            const formattedMovieData = {
+              id: movieData.imdbID,
+              title: movieData.Title,
+              movieImg: movieData.Poster,
+              plot: movieData.Plot,
+              duration: movieData.Runtime,
+              rating: movieData.imdbRating,
+              rated: movieData.Rated,
+              metascore: movieData.Metascore,
+            }
+        setMovieDetail(formattedMovieData)
     }  
         fetchMovieDetail()
       },[]); 
-      console.log(id)
-      console.log(movieDetail)
 
       const handleBack = () => {
         console.log('calling handleBack')
         return navigate("/movies")
       }
-
+      console.log(movieDetail)
     return (
-        <Grid item xs={12} mb={8} mt={2} ml={50} >
+    <>
+    {movieDetail && (<>
+    <DetailMovieCard movie={movieDetail} />
 
-{movieDetail ? (      <Paper elevation={0} sx={{ maxWidth: 300 , maxHeight: 250, borderBottomLeftRadius: 10, borderBottomRightRadius: 10, borderTopLeftRadius:15, borderTopRightRadius:15}}>
-    <img src={movieDetail.Poster} />
-        <CardContent sx={{maxHeight:185, height:100}}>
-          <Typography gutterBottom variant="h6" component="div">
-            {movieDetail.Title}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {movieDetail.Plot}
-          </Typography>
-          <Button onClick={()=>handleBack()}>Go Back to Movies</Button>
-        </CardContent>
-      </Paper>) : (<div>Loading...</div>)}
-      </Grid>
-       
-    )
+</>)}
+</>)
 }
 
 export default MovieDetails

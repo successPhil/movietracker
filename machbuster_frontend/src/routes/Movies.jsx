@@ -8,6 +8,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import MovieCard from "../muiComponents/MovieCard";
 import WatchlistSnack from "../muiComponents/WatchlistSnack";
+import Typography from "@mui/material/Typography";
 
 export default function Movies() {
 
@@ -105,12 +106,18 @@ export default function Movies() {
         onKeyDown={handleKeyDown}
         value={inputValue}
         id="search-input"
-        variant="filled"
+        color="secondary"
+        InputLabelProps={{
+          style: { color: '#ffc107'},
+          shrink: true, 
+        }}
+        InputProps={{
+          style: { color: '#ffc107', backgroundColor: '#0e3fa9' }}}
         />
-        <Button id="search-btn" onClick={onClickHandler} variant="contained">Search</Button>
+        <Button id="search-btn" color="secondary" onClick={onClickHandler} variant="contained">Search</Button>
         </Box>
         <Container >
-          {movies ? (<h1></h1>) : (<h1>Upcoming</h1> )}
+          {movies ? (<h1></h1>) : (<Typography variant="h1" ml={20} mt={4}>Soon to be released!</Typography> )}
           <Grid container mt={3}>
             {movies ? (
               movies.map((movie, movieidx)=> (
@@ -121,7 +128,6 @@ export default function Movies() {
               <MovieCard movie={movie} toggleWatchlist={toggleWatchlist} handleAddToWatchlist={handleAddToWatchlist} key={`movie${movieidx}`}/>
             ))}
           </Grid>
-          <WatchlistSnack/>
         </Container>
             </div>
     )

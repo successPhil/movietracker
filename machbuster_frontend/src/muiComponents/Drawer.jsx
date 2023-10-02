@@ -130,7 +130,7 @@ export default function PersistentDrawerLeft({handleLogout, theme}) {
             Menu
           </Typography>
           <Link to="/" id="logout" >
-          <Button onClick={handleLogout} variant="outlined" color='inherit'sx={{
+          <Button onClick={handleLogout} variant="outlined" color='secondary'sx={{
     fontWeight: 'bold', // Make the text bold
     fontSize: '1 rem', // Increase the font size
   }}>Logout</Button>
@@ -144,6 +144,7 @@ export default function PersistentDrawerLeft({handleLogout, theme}) {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
+            background: theme.palette.customColor.main,
           },
         }}
         variant="persistent"
@@ -158,9 +159,9 @@ export default function PersistentDrawerLeft({handleLogout, theme}) {
         <Divider />
         <List>
         {menuItems.map((item, index) => (
-          <ListItem key={item.label} disablePadding>
-            <ListItemButton component={Link} to={item.path}>
-              <ListItemIcon>
+          <ListItem key={item.label} disablePadding sx={{ color: '#ffc107' }}>
+            <ListItemButton component={Link} to={item.path} >
+              <ListItemIcon sx={{ color: '#ffc107' }}>
                 {item.icon}
               </ListItemIcon>
               <ListItemText primary={item.label} />

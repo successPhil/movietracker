@@ -28,7 +28,7 @@ export default function WatchlistSnack({toggleWatchlist, handleAddToWatchlist, m
 
   return (
     <Stack spacing={2} sx={{ width: '100%' }}>
-      <Button size="small" onClick={handleClick}>
+      <Button size="small" onClick={handleClick} sx={{ fontWeight: 'bold', fontSize: '1.0rem' }}>
         Add to watchlist
       </Button>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>

@@ -30,7 +30,7 @@ export default function MovieCard({movie, handleAddToWatchlist, toggleWatchlist}
         </CardContent>
         <CardActions>
         <Link to={`/movies/${movie.id}/details`}>
-          <Button key={`btn${movie.id}`} size="small">Learn More</Button>
+          <Button key={`btn${movie.id}`} size="small" sx={{ fontWeight: 'bold', fontSize: '0.8rem' }}>Learn More</Button>
           </Link>
           <CustomizedSnackbars
           toggleWatchlist={toggleWatchlist} handleAddToWatchlist={handleAddToWatchlist} movie={movie}/>

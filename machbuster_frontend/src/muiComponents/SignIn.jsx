@@ -9,8 +9,11 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import LoginSnack from './LoginSnack';
+import { useTheme } from '@mui/material/styles';
+
 
 export default function SignIn({checked, handleInputChange, handleOnClick, handleSubmit, signUp, handleSignUp, formData }) {
+  const theme = useTheme()
   return (
       <Container component="main" maxWidth="xs">
         <Box
@@ -24,7 +27,7 @@ export default function SignIn({checked, handleInputChange, handleOnClick, handl
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h3" color="#ffc107">
             Sign in
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
@@ -38,6 +41,13 @@ export default function SignIn({checked, handleInputChange, handleOnClick, handl
               autoComplete="username"
               autoFocus
               onChange={handleInputChange}
+              color="secondary"
+              InputLabelProps={{
+                style: { color: '#ffc107'},
+                shrink: true, 
+              }}
+              InputProps={{
+                style: { color: '#ffc107', backgroundColor: '#0e3fa9' }}}
             />
             <TextField
               margin="normal"
@@ -49,10 +59,17 @@ export default function SignIn({checked, handleInputChange, handleOnClick, handl
               id="password"
               autoComplete="current-password"
               onChange={handleInputChange}
+              color="secondary"
+              InputLabelProps={{
+                style: { color: '#ffc107'},
+                shrink: true, 
+              }}
+              InputProps={{
+                style: { color: '#ffc107', backgroundColor: '#0e3fa9' }}}
             />
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary" checked={checked} onClick={() => handleOnClick(checked)} />}
-              label="Sign up" 
+              control={<Checkbox value="remember" color="secondary" checked={checked} onClick={() => handleOnClick(checked)} />}
+              label={<span style={{ color: '#ffc107' }}>Sign up</span>}
             />
             <Button
               type="submit"
@@ -60,6 +77,7 @@ export default function SignIn({checked, handleInputChange, handleOnClick, handl
               variant="contained"
               sx={{ mt: 3, mb: 2,fontSize:'1.2rem' }}
               onClick={()=>handleSignUp()}
+              color="secondary"
             >
               {checked ? (<div>Submit</div>):(<div>Sign In</div>)}
             </Button>
