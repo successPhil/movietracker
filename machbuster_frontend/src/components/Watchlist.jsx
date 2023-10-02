@@ -18,7 +18,7 @@ useEffect(() => {
   }
   fetchUserWatchlist()
 }, [])
-
+console.log(userWatchlist)
 const handleRemoveFromWatchlist = async (movieId) => {
   await removeFromWatchlist(movieId)
   const updatedWatchlist = userWatchlist.filter((movie) => (movie.movie_id !== movieId))

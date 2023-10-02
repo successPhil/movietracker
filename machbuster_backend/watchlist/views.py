@@ -31,20 +31,12 @@ class Watchlist(APIView):
 
         try:
             profile = UserProfile.objects.get(user=user)
-            movie, created = Movie.objects.get_or_create(movie_id=movie_id, defaults={'title': movie_title, 'movie_img': movie_img})
-            print(movie.movie_img, 'THIS IS ON THE OBJECT')
-
-            if created:
-                # Movie was created, add it to the user's favorites
+            if not profile.favorite_movies.filter(movie_id=movie_id).exists():
+                movie = Movie.objects.create(movie_id=movie_id, title=movie_title, movie_img=movie_img)
                 profile.favorite_movies.add(movie)
                 return Response({'message': 'Movie added to watchlist.'}, status=status.HTTP_200_OK)
             else:
-                # Movie already existed, handle it accordingly
-                if movie not in profile.favorite_movies.all():
-                    profile.favorite_movies.add(movie)
-                    return Response({'message': 'Movie added to watchlist.'}, status=status.HTTP_200_OK)
-                else:
-                    return Response({'message': 'Movie already in watchlist.'}, status=status.HTTP_200_OK)
+                return Response({'message': 'Movie already in watchlist.'}, status=status.HTTP_200_OK)
 
         except UserProfile.DoesNotExist:
             return Response({'message': 'User profile not found.'}, status=status.HTTP_404_NOT_FOUND)
@@ -53,15 +45,12 @@ class Watchlist(APIView):
 class RemoveFromWatchlist(APIView):
     def delete(self, request, movie_id):
         user = request.user
-
         try:
             profile = UserProfile.objects.get(user=user)
-            movie = Movie.objects.get(movie_id=movie_id)
-
-            # Check if the movie is in the user's watchlist
-            if movie in profile.favorite_movies.all():
-                profile.favorite_movies.remove(movie)
-                return Response({'message': 'Movie removed from watchlist.'}, status=status.HTTP_200_OK)
+            if profile.favorite_movies.filter(movie_id=movie_id).exists():
+              movie = profile.favorite_movies.get(movie_id=movie_id)
+              profile.favorite_movies.remove(movie)
+              return Response({'message': 'Movie removed from watchlist.'}, status=status.HTTP_200_OK)
             else:
                 return Response({'message': 'Movie not found in watchlist.'}, status=status.HTTP_404_NOT_FOUND)
 

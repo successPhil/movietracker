@@ -89,7 +89,6 @@ export default function Movies() {
       }
       
     }
-    console.log(watchlist)
 
     const handleAddToWatchlist = async (movieId, movieName, movieImg) => {
       await addToWatchlist(movieId, movieName, movieImg);

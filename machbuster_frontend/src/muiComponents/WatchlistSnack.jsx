@@ -14,6 +14,7 @@ export default function WatchlistSnack({toggleWatchlist, handleAddToWatchlist, m
   const handleClick = async () => {
     setOpen(true);
     toggleWatchlist(movie)
+    console.log(movie, 'THIS IS THE MOVIE')
     await handleAddToWatchlist(movie.id, movie.title, movie.movieImg)
   };
 
