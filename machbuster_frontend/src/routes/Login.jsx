@@ -27,14 +27,10 @@ export default function Login({handleInputChange, handleToken, handleOnClick, ch
             
         }
       };
-      console.log(signUp)
-
-      
 
       if (token) {
         return <Navigate to="/movies" />;
       }
-    
       return (
         <div className="route-text">
         <SignIn handleSubmit={handleSubmit} handleInputChange={handleInputChange} handleOnClick={handleOnClick} checked={checked} signUp={signUp} handleSignUp={handleSignUp} formData={formData}/>

@@ -52,14 +52,13 @@ export default function SignIn({checked, handleInputChange, handleOnClick, handl
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" checked={checked} onClick={() => handleOnClick(checked)} />}
-              label="Sign up"
-              
+              label="Sign up" 
             />
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2,fontSize:'1.2rem' }}
               onClick={()=>handleSignUp()}
             >
               {checked ? (<div>Submit</div>):(<div>Sign In</div>)}

@@ -9,6 +9,7 @@ import MovieDetails from "./routes/MovieDetails";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Watchlist from "./components/Watchlist";
+import { Navigate } from "react-router-dom";
 
 
 

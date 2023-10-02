@@ -11,7 +11,7 @@ class Watchlist(APIView):
         
         try:
             profile = UserProfile.objects.get(user=user)
-            watchlist_movies = profile.favorite_movies.all()  # Retrieve the user's watchlist movies
+            watchlist_movies = profile.favorite_movies.all().order_by('-date_added')  # Retrieve the user's watchlist movies
 
             # Serialize the watchlist movies data
             serializer = MovieSerializer(watchlist_movies, many=True)
