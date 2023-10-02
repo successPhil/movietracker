@@ -68,7 +68,6 @@ async function basicFetch(url, payload) {
   }
 
   export async function addToWatchlist(movieId, movieName, movieImg){
-    console.log(movieName)
     try {
       const response = await fetch('http://localhost:8000/watchlist/', {
         method: 'POST',

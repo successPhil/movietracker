@@ -9,13 +9,15 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-export default function SignIn({checked, handleInputChange, formData, handleToken, handleOnClick, handleSubmit, handleCheckboxChange}) {
+export default function SignIn({checked, handleInputChange, formData, handleToken, handleOnClick, handleSubmit }) {
+  console.log(checked)
   
 
   
   
   return (
       <Container component="main" maxWidth="xs">
+        <button onClick={() => handleOnClick(checked)}>Test me</button>
         <Box
           sx={{
             marginTop: 8,
@@ -54,7 +56,7 @@ export default function SignIn({checked, handleInputChange, formData, handleToke
               onChange={handleInputChange}
             />
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary" checked={checked} onClick={handleOnClick} />}
+              control={<Checkbox value="remember" color="primary" checked={checked} onClick={() => handleOnClick(checked)} />}
               label="Sign up"
               
             />

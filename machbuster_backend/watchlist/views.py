@@ -27,21 +27,28 @@ class Watchlist(APIView):
         movie_title = request.data.get('movie_title')
         movie_img = request.data.get('movie_img')
         user = request.user
-        
+        print(movie_img, 'THIS IS THE MOVIE IMG')
 
         try:
             profile = UserProfile.objects.get(user=user)
             movie, created = Movie.objects.get_or_create(movie_id=movie_id, defaults={'title': movie_title, 'movie_img': movie_img})
+            print(movie.movie_img, 'THIS IS ON THE OBJECT')
 
-            # Check if the movie is already in the user's favorites
-            if movie not in profile.favorite_movies.all():
+            if created:
+                # Movie was created, add it to the user's favorites
                 profile.favorite_movies.add(movie)
                 return Response({'message': 'Movie added to watchlist.'}, status=status.HTTP_200_OK)
             else:
-                return Response({'message': 'Movie already in watchlist.'}, status=status.HTTP_200_OK)
+                # Movie already existed, handle it accordingly
+                if movie not in profile.favorite_movies.all():
+                    profile.favorite_movies.add(movie)
+                    return Response({'message': 'Movie added to watchlist.'}, status=status.HTTP_200_OK)
+                else:
+                    return Response({'message': 'Movie already in watchlist.'}, status=status.HTTP_200_OK)
 
         except UserProfile.DoesNotExist:
             return Response({'message': 'User profile not found.'}, status=status.HTTP_404_NOT_FOUND)
+
 
 class RemoveFromWatchlist(APIView):
     def delete(self, request, movie_id):

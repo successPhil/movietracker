@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom';
 
 
 
-export default function Login({handleInputChange, formData, handleToken, handleOnClick, checked, token, handleCheckboxChange}) {
+export default function Login({handleInputChange, formData, handleToken, handleOnClick, checked, token }) {
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (checked) {
@@ -15,7 +15,7 @@ export default function Login({handleInputChange, formData, handleToken, handleO
               }
               signup(context)
               console.log(checked, "from Login")
-              handleCheckboxChange(checked)
+              handleOnClick(checked)
         } else {
             const data = new FormData(event.currentTarget);
             const context = {

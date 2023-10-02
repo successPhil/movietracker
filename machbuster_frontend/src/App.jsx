@@ -27,9 +27,9 @@ function App() {
 
   }, [])
 
-  const handleCheckboxChange = (toggleCheck) => {
-    setChecked(!toggleCheck)
-  }
+  // const handleCheckboxChange = (toggleCheck) => {
+  //   setChecked(!toggleCheck)
+  // }
   
   const handleToken = (token) => {
     setFormData({ username: '', password: '' })
@@ -45,8 +45,9 @@ function App() {
     });
   };
 
-  const handleOnClick = (newChecked) => {
-    setChecked(newChecked);
+  const handleOnClick = (prev) => {
+    console.log(!prev, 'lasdgasdgSADGADS')
+    setChecked(!prev);
     
   }
   console.log(checked, "from App")
@@ -71,12 +72,14 @@ function App() {
 
   return (
     <>
+    
     <ThemeProvider theme={darkTheme}>
         <CssBaseline />
+        
     <Router>
     <PersistentDrawerLeft handleLogout={handleLogout } theme={darkTheme} />
      <Routes>
-      <Route path="/" element={<Login checked={checked} handleOnClick={handleOnClick} handleInputChange={handleInputChange} formData={formData} handleToken={handleToken} token={userToken} handleCheckboxChange={handleCheckboxChange} />} />
+      <Route path="/" element={<Login checked={checked} handleOnClick={handleOnClick} handleInputChange={handleInputChange} formData={formData} handleToken={handleToken} token={userToken} />} />
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/movies" element={<Movies />} />

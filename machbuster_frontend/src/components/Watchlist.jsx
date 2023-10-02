@@ -13,7 +13,6 @@ useEffect(() => {
   const fetchUserWatchlist = async () => {
     const watchlist = await getWatchlist()
     setUserWatchlist(watchlist)
-    // console.log(watchlist)
   }
   fetchUserWatchlist()
   
@@ -25,8 +24,8 @@ console.log(userWatchlist, "this is sparta")
 const handleRemoveFromWatchlist = async (movieId) => {
   await removeFromWatchlist(movieId)
   const updatedWatchlist = userWatchlist.filter((movie) => (movie.movie_id !== movieId))
+  
   setUserWatchlist(updatedWatchlist)
-  console.log(updatedWatchlist)
 }
 
 
