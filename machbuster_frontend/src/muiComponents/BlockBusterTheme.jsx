@@ -15,7 +15,8 @@ const blockbusterTheme = createTheme({
       },
     background: {
       default: '#1a237e', // Dark Blue (default background color)
-      paper: '#ffc107',
+      paper: '#bbdefb',
+      // paper: '#ffc107',
       contrastText: '#ffc107' 
     },
   },

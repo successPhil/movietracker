@@ -100,7 +100,6 @@ function App() {
         <CssBaseline />
     <Router>
     <PersistentDrawerLeft handleLogout={handleLogout} theme={theme}/>
-    <img src="./images/machbuster.png"/>
      <Routes>
       <Route path="/" element={<Login checked={checked} handleOnClick={handleOnClick} handleInputChange={handleInputChange} formData={formData} handleToken={handleToken} token={userToken} signUp={signUp} handleSignUp={handleSignUp} />} />
       <Route path="/about" element={<About />} />
