@@ -10,7 +10,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Watchlist from "./components/Watchlist";
 import blockbusterTheme from "./muiComponents/BlockBusterTheme";
-
+import { Typography } from "@mui/material";
 
 
 function App() {
@@ -58,37 +58,6 @@ function App() {
   setSignUp(false)
   }
 
-  // const theme = createTheme({
-  //   typography: {
-  //     h1: {
-  //       fontSize: '5rem', // Very large font size for h1
-  //     },
-  //     h2: {
-  //       fontSize: '3.5rem', // Very large font size for h2
-  //     },
-  //     h3: {
-  //       fontSize: '1.8rem', // Large font size for h3
-  //     },
-  //     h4: {
-  //       fontSize: '1.5rem', // Medium-large font size for h4
-  //     },
-  //     h5: {
-  //       fontSize: '1.3rem', // Medium font size for h5
-  //     },
-  //     h6: {
-  //       fontSize: '1rem', // Medium font size for h6
-  //     },
-  //   },
-  //   // Add other theme configurations
-  //   palette: {
-  //     mode: 'dark',
-  //     primary: {
-  //       main: '#7e57c2',
-  //     },
-  //     // Add more palette options as needed
-  //   },
-  // });
-
   const theme = blockbusterTheme
 
 
@@ -100,6 +69,10 @@ function App() {
         <CssBaseline />
     <Router>
     <PersistentDrawerLeft handleLogout={handleLogout} theme={theme}/>
+    <Typography id="your-class" variant="h1" component="p">Please work!</Typography>
+    <Typography style={{ fontFamily: 'Impact, sans-serif' }} variant="h1" component="h1"/>
+    <Typography  variant="h4" component="h4">The dream
+</Typography>
      <Routes>
       <Route path="/" element={<Login checked={checked} handleOnClick={handleOnClick} handleInputChange={handleInputChange} formData={formData} handleToken={handleToken} token={userToken} signUp={signUp} handleSignUp={handleSignUp} />} />
       <Route path="/about" element={<About />} />

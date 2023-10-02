@@ -5,6 +5,13 @@ html, body{
 
 }
 
+@font-face {
+  font-family: 'Impact';
+  src: url('./fonts/impact.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 #logout {
   margin-left: auto;
   height:38px;
@@ -65,3 +72,16 @@ li {
   height: 135px;
 }
 
+.card-title {
+  text-align: center;
+  /* Add any other styles as needed */
+}
+
+
+
+#your-class {
+  font-family: 'Impact', sans-serif;
+  background-color:red
+}
+
+/* Other CSS rules for your theme... */

@@ -1,86 +1,91 @@
-import Box from "@mui/material/Box";
+import React from 'react';
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from '@mui/material/Typography';
-import Rating from '@mui/material/Rating';
-import { styled } from '@mui/material/styles';
-
-  const theme = createTheme({
-    typography: {
-      h1: {
-        fontSize: '5rem', // Very large font size for h1
-      },
-      h2: {
-        fontSize: '3.5rem', // Very large font size for h2
-      },
-      h3: {
-        fontSize: '3rem', 
-        fontWeight: 'bold',
-        fontFamily: '"Roboto Condensed", sans-serif',
-        // Large font size for h3
-      },
-      h4: {
-        fontSize: '1.5rem', // Medium-large font size for h4
-      },
-      h5: {
-        fontSize: '1.3rem', // Medium font size for h5
-      },
-      h6: {
-        fontSize: '1rem', // Medium font size for h6
-      },
-    },
-    // Add other theme configurations
-    palette: {
-      mode: 'dark',
-      primary: {
-        main: '#7e57c2',
-      },
-      // Add more palette options as needed
-    },
-  });
-
-
-
-const StyledPaper = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(3),
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  textAlign: 'center',
-}));
-
-const MovieImage = styled(CardMedia)(({ theme }) => ({
-  width: '225px',
-  height: '420px',
-  objectFit: 'cover',
-  marginBottom: theme.spacing(2),
-  paddingTop: theme.spacing(2), // Add space on top
-  paddingBottom: theme.spacing(2),
-}));
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box'; 
+import { useNavigate } from 'react-router-dom';
+import Divider from '@mui/material/Divider';
 
 const DetailMovieCard = ({ movie }) => {
-  return (
-    <Container maxWidth="sm">
-      <Grid container justifyContent="center"> {/* Use Grid to control positioning */}
-        <Grid item xs={12} mb={8}> {/* Grid item to contain the component */}
-          <StyledPaper elevation={3}>
-            <Typography variant="h3">{movie.title}</Typography>
-            <MovieImage
-              component="img"
-              image={movie.movieImg}
-              alt={movie.title}
-              
-            />
-            <Typography variant="h6">{movie.plot}</Typography>
-            <Typography variant="h6">Rating: {movie.rating}</Typography>
-            <Typography variant="h6">Rated: {movie.rated}</Typography>
-            <Typography variant="h6">Duration: {movie.duration}</Typography>
-            <Typography variant="h6">Metascore: {movie.metascore}</Typography>
+  const navigate = useNavigate()
+  const containerStyle = {
+    width: '360px',
+    height: '500px',
+    background: `url(${movie.movieImg}) no-repeat center center`,
+    backgroundSize: 'cover',
+    position: 'relative',
+    margin: 'auto',
+  };
 
-            <Rating name="read-only" value={4.5} readOnly precision={0.5} />
-          </StyledPaper>
+  const textContainerStyle = {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    padding: '16px',
+    textAlign: 'center',
+    color: '#ffc107',
+    position: 'absolute',
+    width: '100%',
+    bottom: 0,
+  };
+
+  const paperStyle = {
+    padding: '16px',// Add padding to create space from the edges
+    borderRadius: '14px',
+  };
+
+  const handleBack = () => {
+    return navigate('/movies')
+  }
+
+  return (
+    <Container style={{ margin: 'auto', width: '66vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <Grid container spacing={1} style={{ justifyContent: 'center', marginTop: '-210px' }}>
+        <Grid item xs={12}>
+          <Paper style={containerStyle}>
+            <div style={textContainerStyle}>
+            </div>
+          </Paper>
+        </Grid>
+        <Grid item xs={12}>
+          <Paper style={paperStyle}>
+            <Typography className='card-title' variant='h3'>{movie.title}</Typography>
+            <Divider variant="middle" style={{ margin: '16px 0' }} />
+            <Typography variant='h4'><strong>Plot: </strong>{movie.plot}</Typography>
+
+            {/* Movie length and Rated */}
+            <Box display="flex" justifyContent="space-between" alignItems="center" p={0}>
+              <Typography variant='h6' component='p'>Movie length: {movie.duration}</Typography>
+              <Typography variant='h6' component='p'>Rated: {movie.rated}</Typography>
+            </Box>
+
+            {/* IMDB Rating */}
+            <Box display="flex" alignItems="center" p={0}>
+              <Typography variant='h6' component='p'>IMDB Rating: {movie.rating}</Typography>
+                {/* Place your rating component here */}
+                {/* Example: <RatingComponent value={movie.imdbRating} /> */}
+            </Box>
+            {/* Metascore */}
+            <Box display="flex" alignItems="center" p={0}>
+              <Typography variant='h6' component='p'>Metascore: {movie.metascore}</Typography>
+                {/* Place your rating component here */}
+                {/* Example: <RatingComponent value={movie.metascore} /> */}
+            </Box>
+
+            {/* Machbuster Score */}
+            <Box display="flex" alignItems="center" p={0}>
+              <Typography variant='h6' component='p'>Machbuster Score: N/A</Typography>
+                {/* Place your rating component here */}
+                {/* Example: <RatingComponent value={movie.machbusterScore} /> */}
+            </Box>
+
+            <Button variant="contained" color="primary">
+              Add to watchlist
+            </Button>
+            <Button onClick={handleBack}>
+              Back
+            </Button>
+          </Paper>
         </Grid>
       </Grid>
     </Container>
