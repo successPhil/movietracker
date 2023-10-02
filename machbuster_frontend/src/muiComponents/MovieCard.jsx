@@ -6,10 +6,10 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { Link } from 'react-router-dom';
-import CustomizedSnackbars from '../muiComponents/Snack';
+import CustomizedSnackbars from './WatchlistSnack';
 
 
-export default function ImgMediaCard({movie, handleAddToWatchlist, toggleWatchlist}) {
+export default function MovieCard({movie, handleAddToWatchlist, toggleWatchlist}) {
     return (
       <Grid item xs={4} mb={8} mt={2}>
       <Paper elevation={12} sx={{ maxWidth: 345 , maxHeight: 725, borderBottomLeftRadius: 10, borderBottomRightRadius: 10, borderTopLeftRadius:15, borderTopRightRadius:15}}>

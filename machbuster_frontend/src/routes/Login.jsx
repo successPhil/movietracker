@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom';
 
 
 
-export default function Login({handleInputChange, formData, handleToken, handleOnClick, checked, token }) {
+export default function Login({handleInputChange, handleToken, handleOnClick, checked, token, signUp, handleSignUp, formData }) {
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (checked) {
@@ -27,6 +27,7 @@ export default function Login({handleInputChange, formData, handleToken, handleO
             
         }
       };
+      console.log(signUp)
 
       
 
@@ -36,7 +37,7 @@ export default function Login({handleInputChange, formData, handleToken, handleO
     
       return (
         <div className="route-text">
-        <SignIn handleSubmit={handleSubmit} handleInputChange={handleInputChange} formData={formData} handleToken={handleToken} handleOnClick={handleOnClick} checked={checked}/>
+        <SignIn handleSubmit={handleSubmit} handleInputChange={handleInputChange} handleOnClick={handleOnClick} checked={checked} signUp={signUp} handleSignUp={handleSignUp} formData={formData}/>
         </div>
     )
 }

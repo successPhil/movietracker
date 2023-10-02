@@ -8,7 +8,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-export default function CustomizedSnackbars({toggleWatchlist, handleAddToWatchlist, movie}) {
+export default function WatchlistSnack({toggleWatchlist, handleAddToWatchlist, movie}) {
   const [open, setOpen] = React.useState(false);
 
   const handleClick = async () => {

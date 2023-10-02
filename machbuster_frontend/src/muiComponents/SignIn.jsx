@@ -8,16 +8,11 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import LoginSnack from './LoginSnack';
 
-export default function SignIn({checked, handleInputChange, formData, handleToken, handleOnClick, handleSubmit }) {
-  console.log(checked)
-  
-
-  
-  
+export default function SignIn({checked, handleInputChange, handleOnClick, handleSubmit, signUp, handleSignUp, formData }) {
   return (
       <Container component="main" maxWidth="xs">
-        <button onClick={() => handleOnClick(checked)}>Test me</button>
         <Box
           sx={{
             marginTop: 8,
@@ -65,9 +60,11 @@ export default function SignIn({checked, handleInputChange, formData, handleToke
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={()=>handleSignUp()}
             >
               {checked ? (<div>Submit</div>):(<div>Sign In</div>)}
             </Button>
+              <LoginSnack signUp={signUp} formData={formData}/>
           </Box>
         </Box>
       </Container>

@@ -1,17 +1,13 @@
-import { getMovies, getNewMovies, removeFromWatchlist } from "../api/authApi"
+import { getMovies, getNewMovies, addToWatchlist } from "../api/authApi"
 import { useState, useEffect, useContext } from 'react'
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import ImgMediaCard from "../components/Card"
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import { addToWatchlist } from "../api/authApi";
-import CustomizedSnackbars from "../muiComponents/Snack";
-import Watchlist from "../components/Watchlist";
+import MovieCard from "../muiComponents/MovieCard";
+import WatchlistSnack from "../muiComponents/WatchlistSnack";
 
 export default function Movies() {
 
@@ -119,14 +115,14 @@ export default function Movies() {
           <Grid container mt={3}>
             {movies ? (
               movies.map((movie, movieidx)=> (
-                <ImgMediaCard movie={movie} key={`movie${movieidx}`} toggleWatchlist={toggleWatchlist} handleAddToWatchlist={handleAddToWatchlist} />
+                <MovieCard movie={movie} key={`movie${movieidx}`} toggleWatchlist={toggleWatchlist} handleAddToWatchlist={handleAddToWatchlist} />
               ))
             ) :
             newMovies.map((movie, movieidx)=>(
-              <ImgMediaCard movie={movie} toggleWatchlist={toggleWatchlist} handleAddToWatchlist={handleAddToWatchlist} key={`movie${movieidx}`}/>
+              <MovieCard movie={movie} toggleWatchlist={toggleWatchlist} handleAddToWatchlist={handleAddToWatchlist} key={`movie${movieidx}`}/>
             ))}
           </Grid>
-          <CustomizedSnackbars/>
+          <WatchlistSnack/>
         </Container>
             </div>
     )

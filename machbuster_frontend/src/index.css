@@ -5,8 +5,6 @@ html, body{
 
 }
 
-
-
 #logout {
   margin-left: auto;
   color: red;
@@ -62,3 +60,9 @@ li {
   height:44px;
   width:140px;
 }
+
+.watchlist-item-img {
+  width: 85px;
+  height: 115px;
+}
+
