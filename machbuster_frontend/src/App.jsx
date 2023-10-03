@@ -11,6 +11,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Watchlist from "./components/Watchlist";
 import blockbusterTheme from "./muiComponents/BlockBusterTheme";
 import { Typography } from "@mui/material";
+import machbuster from "./images/machbuster.jpeg"
 
 
 function App() {
@@ -69,10 +70,6 @@ function App() {
         <CssBaseline />
     <Router>
     <PersistentDrawerLeft handleLogout={handleLogout} theme={theme}/>
-    <Typography id="your-class" variant="h1" component="p">Please work!</Typography>
-    <Typography style={{ fontFamily: 'Impact, sans-serif' }} variant="h1" component="h1"/>
-    <Typography  variant="h4" component="h4">The dream
-</Typography>
      <Routes>
       <Route path="/" element={<Login checked={checked} handleOnClick={handleOnClick} handleInputChange={handleInputChange} formData={formData} handleToken={handleToken} token={userToken} signUp={signUp} handleSignUp={handleSignUp} />} />
       <Route path="/about" element={<About />} />

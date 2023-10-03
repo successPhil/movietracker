@@ -117,7 +117,7 @@ export default function Movies() {
         <Button id="search-btn" color="secondary" onClick={onClickHandler} variant="contained">Search</Button>
         </Box>
         <Container >
-          {movies ? (<h1></h1>) : (<Typography variant="h1" ml={20} mt={4}>Soon to be released!</Typography> )}
+          {movies ? (<h1></h1>) : (<Typography variant="h1" ml={20} mt={4}style={{ fontFamily: 'Impact', fontSize: '5rem', color: '#ffc107' }}>Soon to be released!</Typography> )}
           <Grid container mt={3}>
             {movies ? (
               movies.map((movie, movieidx)=> (
