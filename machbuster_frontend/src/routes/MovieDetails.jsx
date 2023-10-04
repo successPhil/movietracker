@@ -1,13 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { getMovieDetail } from "../api/authApi"
 import { useEffect, useState } from "react";
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Button from "@mui/material/Button";
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box"
 import DetailMovieCard from "../muiComponents/DetailMovieCard";
 
 const MovieDetails = () => {
