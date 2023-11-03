@@ -9,11 +9,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import LoginSnack from './LoginSnack';
-import { useTheme } from '@mui/material/styles';
 
 
 export default function SignIn({checked, handleInputChange, handleOnClick, handleSubmit, signUp, handleSignUp, formData }) {
-  const theme = useTheme()
   return (
       <Container component="main" maxWidth="xs">
         <Box
