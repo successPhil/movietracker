@@ -11,11 +11,13 @@ export POSTGRES_DB=$3
 export POSTGRES_USER=$4
 export POSTGRES_PASSWORD=$5
 export NEW_VERSION=$6
+export MOVIE_API_KEY=$7
+export UPCOMING_MOVIE_API_KEY=$8
 
 docker-compose -f docker-compose.prod.yml build --no-cache
 docker-compose -f docker-compose.prod.yml up -d
 
 # make sure the postgres container is ready, then run migrations
 sleep 10 
-docker exec movie-app-api-1 python /src/manage.py makemigrations 
-docker exec movie-app-api-1 python /src/manage.py migrate
+docker exec movietracker-api-1 python /src/manage.py makemigrations 
+docker exec movietracker-api-1 python /src/manage.py migrate
