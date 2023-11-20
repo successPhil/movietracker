@@ -1,12 +1,28 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { getMovieDetail } from "../api/authApi"
+import { getMovieDetail, addToWatchlist } from "../api/authApi"
 import { useEffect, useState } from "react";
 import DetailMovieCard from "../muiComponents/DetailMovieCard";
 
 const MovieDetails = () => {
     let { id } = useParams(); // Access the movie ID from route parameters
     const [movieDetail, setMovieDetail] = useState(null)
+    const [watchlist, setWatchlist ] = useState([])
     const navigate = useNavigate()
+
+    const toggleWatchlist = (moviepick) => {
+      const alreadyAdded = watchlist.some((movie) => (movie.id === moviepick.id))
+      if (!alreadyAdded){
+        setWatchlist((prev)=> [
+          ...prev, {id: moviepick.id, title: moviepick.title, img: moviepick.movieImg}
+        ])
+      }
+      
+    }
+
+    const handleAddToWatchlist = async (movieId, movieName, movieImg) => {
+      await addToWatchlist(movieId, movieName, movieImg);
+      console.log(`${movieName} added to list`)
+    };
 
     useEffect(() => {
         const fetchMovieDetail = async () => {
@@ -27,6 +43,9 @@ const MovieDetails = () => {
         fetchMovieDetail()
       },[]); 
 
+
+      
+
       const handleBack = () => {
         console.log('calling handleBack')
         return navigate("/movies")
@@ -35,7 +54,7 @@ const MovieDetails = () => {
     return (
     <>
     {movieDetail && (<>
-    <DetailMovieCard movie={movieDetail} />
+    <DetailMovieCard movie={movieDetail} toggleWatchlist={toggleWatchlist} handleAddToWatchlist={handleAddToWatchlist} />
 
 </>)}
 </>)

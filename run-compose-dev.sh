@@ -1,10 +1,10 @@
-export SECRET_KEY=abc123
-export DEBUG=True
-export POSTGRES_DB=movie_db
-export POSTGRES_USER=postgres
-export POSTGRES_PASSWORD=postgres
-export MOVIE_API_KEY=$1
-export UPCOMING_MOVIE_API_KEY=$2
+export SECRET_KEY=$1
+export DEBUG=$2
+export POSTGRES_DB=$3
+export POSTGRES_USER=$4
+export POSTGRES_PASSWORD=$5
+export MOVIE_API_KEY=$6
+export UPCOMING_MOVIE_API_KEY=$7
 
 
 COMPOSE_DOCKER_CLI_BUILD=0 DOCKER_BUILDKIT=0 docker compose -f docker-compose.dev.yml up -d --build
