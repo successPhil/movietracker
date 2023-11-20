@@ -2,6 +2,7 @@ html, body{
   height: 100%;
   margin: 0;
   padding: 0;
+ 
 
 }
 
@@ -12,6 +13,20 @@ html, body{
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Sono-VariableFont_MONO';
+  src: url('fonts/Sono-VariableFont_MONO,wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.contact-title {
+  font-family: 'Impact', sans-serif;
+  color:#ffc107;
+  font-size: 3rem;
+}
+
+
 #logout {
   margin-left: auto;
   height:38px;
@@ -19,25 +34,44 @@ html, body{
 .route-text {
   margin-left: 250px;
   text-align: center;
-  max-width: 800px;
+  max-width: 86%;
   margin: 0 auto;
   padding: 0 20px;
 }
+.watchlist-text {
+  font-family: 'Sono-VariableFont_MONO', sans-serif;
+  font-size: 3rem;
+  color: rgb(4, 4, 93);
+}
+
+.card-content {
+  color: rgb(4, 4, 93);
+  font-size: 1.5rem;
+}
+
 
 .about-content {
   min-width: 100%;
   padding: 20px;
+  color: #ffc107;
+  font-family: 'Sono-VariableFont_MONO', sans-serif;
+  font-size: 2.3rem;
 }
 
 ul {
   list-style-type: none; /* Remove default bullets */
   padding-left: 0; /* Remove default padding */
+  font-size:2.5rem
 }
 
 li {
   margin-bottom: 10px;
   position: relative;
   left: 20px; /* Adjust indentation of list items */
+  font-size:2.5rem
+}
+p {
+  font-size: 2.5rem;
 }
 
 
@@ -73,6 +107,14 @@ li {
 
 .card-title {
   text-align: center;
+  color: rgb(4, 4, 93);
+  font-family: 'Sono-VariableFont_MONO', sans-serif;
+}
+
+.card-plot {
+  color: rgb(4, 4, 93);
+  font-family: 'Sono-VariableFont_MONO', sans-serif;
+  font-size: 3rem
 }
 
 .logo {

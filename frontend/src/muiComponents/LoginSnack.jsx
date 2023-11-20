@@ -24,7 +24,7 @@ export default function LoginSnack({ signUp, formData }) {
   };
 
   return (
-    <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+    <Snackbar open={open} autoHideDuration={6000} sx={{backgroundColor: 'blue'}} onClose={handleClose}>
       <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
         You have successfully registered as {formData.username}, feel free to login!
       </Alert>

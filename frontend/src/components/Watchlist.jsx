@@ -32,7 +32,7 @@ const handleRemoveFromWatchlist = async (movieId) => {
           <Grid item xs={12} key={movie.id}>
             <Paper sx={{ p: 2, display: 'flex', alignItems: 'center' }}>
               <img className='watchlist-item-img' src={movie.movie_img} alt={movie.title} style={{ maxWidth: 100, marginRight: 10 }} />
-              <Typography variant='h5' component='h4' ml={7} sx={{flexGrow: 1, textAlign: 'left'}}>{movie.title}</Typography>
+              <Typography  className='watchlist-text' variant='h5' component='h4' ml={21} sx={{ color: '#04045d', fontFamily: 'Sono-VariableFont_MONO', fontSize: '2rem', flexGrow: 1, textAlign: 'left' }}>{movie.title}</Typography>
               <IconButton aria-label="delete" onClick={() => handleRemoveFromWatchlist(movie.movie_id)}>
                 <DeleteIcon />
               </IconButton>
