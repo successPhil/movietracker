@@ -1,5 +1,6 @@
 # Machbuster
 
+
 Welcome to Machbuster! Machbuster is a web app that allows users to manage their movie watchlist. Users can create an account, explore upcoming releases or favorites, and curate a personal watchlist for a tailored cinematic experience. 
 
 <img src="https://github.com/successPhil/demo-gifs/blob/main/machbuster-demo.gif?raw=true" alt="machbuster-demo">
